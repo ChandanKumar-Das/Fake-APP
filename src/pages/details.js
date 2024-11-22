@@ -1,19 +1,23 @@
 
 
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Navbar } from '../components/Navbar';
 import { Filter } from '../components/Filter';
 import { ProductContextProvider } from '../contexts/productcontext';
 
 export function Details() {
-  const { id } = useParams(); 
+  const { id } = useParams();
+  const {path} = useLocation() 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [show, setShow] = useState(false)
 
- 
+ console.log(id)
+ //console.log(path)
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -28,6 +32,8 @@ export function Details() {
 
     fetchProduct();
   }, [id]);
+
+
 
 
 
@@ -61,9 +67,13 @@ export function Details() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
        
-        <div className="flex justify-center items-center">
+        <div onMouseOver={()=>setShow(true)} onMouseLeave={()=>setShow(false)} className="flex justify-center items-center">
           <img src={image} alt={title} className="max-w-full h-auto rounded-lg shadow-lg" />
         </div>
+
+        {show ? <div  className="w-full">
+        <img src={image} alt={title} className="max-w-full h-auto rounded-lg shadow-lg" />
+      </div>:''}
 
         <div>
           <h2 className="text-2xl font-semibold mb-3">{title}</h2>
