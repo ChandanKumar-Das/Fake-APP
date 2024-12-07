@@ -1,4 +1,4 @@
-import { useState,useEffect,useCallback, createContext   } from "react";
+import { useState, createContext   } from "react";
 import axios from "axios";
 
 export const productContext= createContext()
@@ -6,31 +6,45 @@ export const productContext= createContext()
 export function ProductContextProvider({children}){
 
     const [data , setData]= useState([])
-      
     const [lading, setLoading] = useState(false)
+    const[serchtext, setSerchText] =useState('')
 
 
-    const fetchData = useCallback(async (url) => {
+//console.log('data',data)
+   
+    //const filterData = data.filter((value)=>value.description.toLowerCase().include(serchtext.toLowerCase()))
+    const filterData = data.filter((value) => value.description.toLowerCase().includes(serchtext.toLowerCase()))
+
+
+console.log('filterData',filterData)
+    const fetchData = async (url) => {
         setLoading(true)
-        //  const url = 'https://fakestoreapi.com/products'
+        //const url = 'https://fakestoreapi.com/products'
         try{
             const responce = await axios.get(url)
             //console.log(responce) 
             setData(responce.data)
             setLoading(false) 
             console.log(data)
-            }catch(error){
+            }
+
+        catch(error){
               console.log(error)
               setLoading(true)
             }
-      }, [data]);
+
+        }
+
 
    
 
     const values ={
         data,
         lading,
-        fetchData
+        fetchData,
+        filterData,
+        serchtext,
+        setSerchText
     }
     return(
         <>

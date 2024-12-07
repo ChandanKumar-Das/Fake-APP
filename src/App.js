@@ -3,8 +3,11 @@ import { Index } from './pages/Index.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Details } from './pages/details.js';
 
+
 function App() {
   return (
+    <>
+  
     <Router>
       <Routes>
         <Route index element={<Index />} />
@@ -12,6 +15,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
       </Routes>
     </Router>
+    </>
   );
 }
 

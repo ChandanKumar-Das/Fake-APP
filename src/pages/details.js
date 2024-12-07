@@ -8,15 +8,15 @@ import { Filter } from '../components/Filter';
 import { ProductContextProvider } from '../contexts/productcontext';
 
 export function Details() {
-  const { id } = useParams();
-  const {path} = useLocation() 
+  const  {id}  = useParams();
+  //const  {pathname}  = useLocation() 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [show, setShow] = useState(false)
 
- console.log(id)
- //console.log(path)
+//  console.log(id)
+//  console.log(pathname)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -57,7 +57,9 @@ export function Details() {
     <Navbar/>
     <Filter/>
     </ProductContextProvider>
+  
     <div className="max-w-3xl mx-auto p-5">
+      
       <button
         className="mb-4 text-blue-500 hover:underline"
         onClick={() => navigate(-1)}
@@ -66,7 +68,7 @@ export function Details() {
       </button>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-       
+     
         <div onMouseOver={()=>setShow(true)} onMouseLeave={()=>setShow(false)} className="flex justify-center items-center">
           <img src={image} alt={title} className="max-w-full h-auto rounded-lg shadow-lg" />
         </div>

@@ -1,11 +1,11 @@
 
-export function Productcads ({props,handleNavigationClick}) {
+export function Productcads ({props}) {
     
       return(
         <>
         <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 m-4">
       <img 
-         onClick={()=>handleNavigationClick(props)}
+         
         className="w-full h-64 object-cover"
         src={props.image}
         alt={props.title}
@@ -29,9 +29,9 @@ export function Productcads ({props,handleNavigationClick}) {
             <span className="text-gray-500 ml-1">({props.rating.count} reviews)</span>
           </span>
         </div>
-        <button className="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg">
+        {/* <button className="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg">
           Add to Cart
-        </button>
+        </button> */}
       </div>
     </div>
         </>

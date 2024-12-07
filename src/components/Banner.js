@@ -9,11 +9,11 @@ export const Banner = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     fade: false,
     cssEase: "ease-in-out",
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), 

@@ -1,5 +1,5 @@
-import axios from "axios"
-import { useEffect, useState,useCallback, useContext } from "react"
+
+import { useEffect,useContext } from "react"
 import { Productcads } from "./cards/prdouctCard";
 import { productContext } from "../contexts/productcontext";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +7,9 @@ import { ProductLoader } from "./loaders/productloader";
 export function Product (){
 
 
-    const { data, lading, fetchData} = useContext(productContext)
+    const {lading, fetchData,filterData} = useContext(productContext)
 
+    
     const navigate = useNavigate()
 
     function handleNavigationClick(value){
@@ -27,11 +28,12 @@ export function Product (){
             <div className="flex justify-center items-center h-[50vh]">
               <ProductLoader />
             </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {data.map((value, index) => (
-                <div key={index} >
-                  <Productcads props={value} handleNavigationClick={handleNavigationClick} />
+          ) : !filterData.length ? (<div>No data Found</div>) :
+            (<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {filterData.map((value, index) => (
+                
+                <div key={index} onClick={()=>handleNavigationClick(value)}>
+                  <Productcads props={value} />
                 </div>
               ))}
             </div>
